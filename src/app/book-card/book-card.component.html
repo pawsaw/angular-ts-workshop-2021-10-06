@@ -5,9 +5,9 @@
       isText: !isTitle
     }"
   >
-    Moby Dick
+    {{ content.title }}
   </h3>
-  <h4>Herman Melville</h4>
+  <h4>{{ content.author }}</h4>
   <a href="#">Details</a>
-  <p [style]="abstractStyle">Lorem Impsum</p>
+  <p [style]="abstractStyle">{{ content.abstract }}</p>
 </div>
