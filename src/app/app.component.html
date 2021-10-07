@@ -1,5 +1,12 @@
 <h1>{{ title }}</h1>
-<app-book-card [book]="book" (bookClicked)="navigateToBook($event)">
+<app-book-filter-input
+  (bookFilterChanged)="bookFilterChanged($event)"
+></app-book-filter-input>
+<app-book-card
+  [book]="book"
+  (bookClicked)="navigateToBook($event)"
+  *ngFor="let book of books | bookFilter: filterQuery"
+>
 </app-book-card>
 
 <router-outlet></router-outlet>
