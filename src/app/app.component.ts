@@ -10,10 +10,15 @@ export class AppComponent {
   title = 'bookm';
 
   book: Book = {
+    isbn: '123',
     title: 'How to win friends',
     author: 'Dale Carnegie',
     abstract: 'In this book ...',
   };
+
+  navigateToBook(book: Book): void {
+    console.log('navigateToBook', book);
+  }
 
   constructor() {}
 }
