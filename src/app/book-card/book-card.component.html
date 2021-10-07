@@ -5,9 +5,9 @@
       isText: !isTitle
     }"
   >
-    {{ content.title }}
+    {{ content?.title }}
   </h3>
-  <h4>{{ content.author }}</h4>
-  <a href="#">Details</a>
-  <p [style]="abstractStyle">{{ content.abstract }}</p>
+  <h4>{{ content?.author }}</h4>
+  <a href="#" (click)="bookDetailClicked($event)">Details</a>
+  <p [style]="abstractStyle">{{ content?.abstract }}</p>
 </div>
