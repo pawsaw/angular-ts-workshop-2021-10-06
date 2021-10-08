@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BookApiService } from './book-api.service';
 import { BookFilterChangedEvent } from './book-filter-input/book-filter-input.component';
@@ -14,10 +15,10 @@ export class BookComponent implements OnInit, OnDestroy {
 
   private readonly sub = new Subscription();
 
-  constructor(private bookApi: BookApiService) {}
+  constructor(private _bookApi: BookApiService, private _router: Router) {}
 
   ngOnInit(): void {
-    const _sub = this.bookApi.fetchAllBooks().subscribe((books) => {
+    const _sub = this._bookApi.fetchAllBooks().subscribe((books) => {
       this.books = books;
     });
 
@@ -29,7 +30,7 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   navigateToBook(book: Book): void {
-    console.log('navigateToBook', book);
+    this._router.navigate(['/books', book.isbn]);
   }
 
   filterQuery = '';

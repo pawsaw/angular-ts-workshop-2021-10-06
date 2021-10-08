@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Book } from './domain/book';
+import { Book, ISBN } from './domain/book';
 
 @Injectable({
   providedIn: 'root',
@@ -11,5 +11,9 @@ export class BookApiService {
 
   fetchAllBooks(): Observable<Book[]> {
     return this._http.get<Book[]>('http://localhost:4730/books');
+  }
+
+  findBookByIsbn(isbn: ISBN): Observable<Book> {
+    return this._http.get<Book>(`http://localhost:4730/books/${isbn}`);
   }
 }
