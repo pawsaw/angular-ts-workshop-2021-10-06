@@ -6,6 +6,9 @@ import { BookFilterInputComponent } from './book-filter-input/book-filter-input.
 import { BookFilterPipe } from './book-filter/book-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { BookDetailComponent } from './book-detail/book-detail.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,9 +17,10 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
     BookFilterInputComponent,
     BookFilterPipe,
     BookDetailComponent,
+    BookEditComponent,
   ],
   providers: [],
-  imports: [CommonModule, HttpClientModule],
-  exports: [BookComponent, BookDetailComponent],
+  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
+  exports: [BookComponent, BookDetailComponent, BookEditComponent],
 })
 export class BookModule {}
