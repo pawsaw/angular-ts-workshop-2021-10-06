@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavigationTriggered } from './navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'bookm';
 
-  constructor() {}
+  constructor(private _router: Router) {}
+
+  navigate({ to }: NavigationTriggered): void {
+    this._router.navigate([to]);
+  }
 }
