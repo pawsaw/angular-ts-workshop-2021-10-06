@@ -5,7 +5,10 @@ import { Book } from '../domain/book';
   name: 'bookFilter',
 })
 export class BookFilterPipe implements PipeTransform {
-  transform(books: Book[], query: string): Book[] {
+  transform(books: Book[] | null, query: string): Book[] | null {
+    if (!books) {
+      return null;
+    }
     if (query.trim().length < 1) {
       return books;
     }

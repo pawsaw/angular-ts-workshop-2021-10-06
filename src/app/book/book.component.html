@@ -4,6 +4,6 @@
 <app-book-card
   [book]="book"
   (bookClicked)="navigateToBook($event)"
-  *ngFor="let book of books | bookFilter: filterQuery"
+  *ngFor="let book of books$ | async | bookFilter: filterQuery"
 >
 </app-book-card>

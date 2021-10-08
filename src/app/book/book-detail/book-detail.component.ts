@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BookApiService } from '../book-api.service';
 import { Book, ISBN } from '../domain/book';
 import { switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 
 /**
  * 1. Hole die isbn
@@ -16,10 +16,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './book-detail.component.html',
   styleUrls: ['./book-detail.component.scss'],
 })
-export class BookDetailComponent implements OnInit, OnDestroy {
-  book: Book | null = null;
-
-  private readonly sub = new Subscription();
+export class BookDetailComponent implements OnInit {
+  book$: Observable<Book | null> = of(null);
 
   constructor(
     private _route: ActivatedRoute,
@@ -27,15 +25,8 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const _sub = this._route.params
-      .pipe(switchMap(({ isbn }) => this._bookApi.findBookByIsbn(isbn)))
-      .subscribe((book) => {
-        this.book = book;
-      });
-    this.sub.add(_sub);
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.book$ = this._route.params.pipe(
+      switchMap((params) => this._bookApi.findBookByIsbn(params.isbn))
+    );
   }
 }
